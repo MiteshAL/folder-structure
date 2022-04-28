@@ -1,0 +1,53 @@
+<ul>
+  <li *ngFor="let folder of folders;index as i">
+    <!-- type wise case -->
+    <div [ngSwitch]="folder.type">
+      <!--type is 0 Unset -->
+      <ng-container *ngSwitchCase="0">
+        <i class="fa fa-folder-tree"></i>
+        <button type="button" (click)="folderType(1,folder,i,folders)" class="btn btn-warning btn-sm">Folder</button>
+        <button type="button" (click)="folderType(2,folder,i,folders)" class="btn btn-primary btn-sm">File</button>
+      </ng-container>
+
+      <!--type is 1 Folder -->
+      <ng-container *ngSwitchCase="1">
+        <!-- toggle button -->
+        <i *ngIf="folder.isOpen;else folderClose" (click)="folderToggle(folder)" class="fa fa-folder-open poiter"></i>
+        <!-- else Folder is closed -->
+        <ng-template #folderClose>
+          <i class="fa fa-folder poiter" (click)="folderToggle(folder)"></i>
+        </ng-template>
+        <!-- check is new or not -->
+        <ng-container *ngIf="folder.isNew && folder.formControl;else existNode">
+          <input type="text" [formControl]="folder.formControl" (keyup.enter)="renameFolder(folder,i,folders)"
+            class="no-outline" [value]="folder.name" [ngStyle]="{'width.ch': folder.name.length,'min-width.ch':5}"
+            placeholder="Enter Something">
+          <i class="fa fa-times poiter text-danger ml-1" (click)="deleteFolder(i,folder,folders)"></i>
+          <i class="fa fa-check poiter text-success ml-1" (click)="renameFolder(folder,i,folders)"></i>
+        </ng-container>
+      </ng-container>
+
+      <!--type is 2 File -->
+      <ng-container *ngSwitchCase="2">
+        <i class="fa fa-file poiter"></i>
+        <!-- check is new or not -->
+        <ng-container *ngIf="folder.isNew && folder.formControl;else existNode">
+          <input type="text" [formControl]="folder.formControl" (keyup.enter)="renameFolder(folder,i,folders)"
+            class="no-outline" [value]="folder.name" [ngStyle]="{'width.ch': folder.name.length,'min-width.ch':5}"
+            placeholder="Enter Something">
+          <i class="fa fa-times poiter text-danger ml-1" (click)="deleteFolder(i,folder,folders)"></i>
+          <i class="fa fa-check poiter text-success ml-1" (click)="renameFolder(folder,i,folders)"></i>
+        </ng-container>
+      </ng-container>
+
+      <!--  template for exist node -->
+      <ng-template #existNode>
+        <span class="folder-name">{{folder.name}}</span>
+        <i *ngIf="folder.type==1" class="fa fa-plus show-icon text-primary" (click)="addSubFolder(folder)"></i>
+        <i class="fa fa-trash show-icon text-danger" (click)="deleteFolder(i,folder,folders)"></i>
+      </ng-template>
+
+    </div>
+    <app-tree *ngIf="folder.children && folder.isOpen" [folders]="folder.children"></app-tree>
+  </li>
+</ul>

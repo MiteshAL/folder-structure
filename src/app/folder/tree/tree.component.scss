@@ -1,0 +1,25 @@
+div .show-icon {
+  opacity: 0;
+}
+
+div:hover .show-icon {
+  opacity: 1;
+  margin-left: 10px !important;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  width: 60px;
+  // background-color: #eee;
+}
+
+.ml-1 {
+  margin-left: 10px !important;
+}
+
+// .no-outline:focus {
+//   outline: none;
+// }

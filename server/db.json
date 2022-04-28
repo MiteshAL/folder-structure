@@ -1,0 +1,46 @@
+{
+  "folder": [
+    {
+      "id": 1,
+      "name": "test new",
+      "type": 1,
+      "rootFolderId": 0,
+      "children": null,
+      "isOpen": false
+    },
+    {
+      "id": 3,
+      "name": "Folder",
+      "type": 1,
+      "rootFolderId": 0,
+      "children": [
+        {
+          "id": 1,
+          "name": "New Folder",
+          "type": 1,
+          "rootFolderId": 3,
+          "children": null,
+          "isOpen": false
+        }
+      ],
+      "isOpen": true
+    },
+    {
+      "id": 4,
+      "name": "Newsdfsd",
+      "type": 1,
+      "rootFolderId": 0,
+      "children": [
+        {
+          "id": 1,
+          "name": "test",
+          "type": 1,
+          "rootFolderId": 4,
+          "children": [],
+          "isOpen": true
+        }
+      ],
+      "isOpen": true
+    }
+  ]
+}

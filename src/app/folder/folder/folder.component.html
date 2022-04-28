@@ -1,0 +1,33 @@
+<div class="container-md">
+  <mat-card>
+    <mat-card-title class="card-header-center">Folder Structure</mat-card-title>
+    <mat-card-content>
+      <div class="row mt-4">
+        <div class="col-12">
+          <button mat-raised-button color="primary" (click)="addFolderToRoot()">Add Folder to Root</button>
+        </div>
+      </div>
+      <!-- folder -->
+      <div class="row">
+        <div class="col-12">
+          <div class="tree">
+            <i *ngIf="rootOpen;else folderClose" (click)="rootOpen=!rootOpen" class="fa fa-folder-open poiter"></i>
+            <!-- else Folder is closed -->
+            <ng-template #folderClose>
+              <i class="fa fa-folder poiter" (click)="rootOpen=!rootOpen"></i>
+            </ng-template>
+            <span class="folder-name">Root</span>
+            <!-- root Folder -->
+            <app-tree *ngIf="rootOpen" [folders]="this.folderService.folders"></app-tree>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title class="card-header-center">Json Data</mat-card-title>
+    <mat-card-content>
+      <pre>{{ foldersJson | json }}</pre>
+    </mat-card-content>
+  </mat-card>
+</div>
